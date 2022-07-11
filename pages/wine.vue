@@ -140,7 +140,7 @@
       type: "red",
       sparkling: false,
       variatal: "dolcetto d’alba ’19 / piedmont",
-      keywords: ["dark", "cherry", "oak", "chocolates"],
+      keywords: ["heavy", "cherry", "oak", "chocolates"],
       glass: 12.5,
       quart: 17.5,
       bottle: 50,
@@ -151,7 +151,7 @@
       type: "rose",
       sparkling: false,
       variatal: "toscana rosato '20",
-      keywords: ["dark", "cherry", "oak", "chocolates"],
+      keywords: ["light", "sweet", "floral"],
       glass: 11.5,
       quart: 16.5,
       bottle: 46,
@@ -159,7 +159,11 @@
   ];
 
   const availableTags = computed(() => {
-    return wines.map((wine) => wine.keywords).flat();
+    const tags = wines.map((wine) => wine.keywords).flat();
+    const tagsOrdered = tags.sort((a, b) => {
+      return a.localeCompare(b);
+    });
+    return [...new Set(tagsOrdered)];
   });
 
   const filteredWines = computed(() => {

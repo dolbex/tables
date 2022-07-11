@@ -7,14 +7,12 @@
       v-for="tab in tabs"
       :key="tab.name"
       :href="tab.route"
-      class="flex flex-col items-center space-y-1 w-20 overflow-hidden"
+      class="flex flex-col items-center space-y-1 w-20 overflow-hidden px-3 py-2 font-medium text-[10px] rounded-md text-center"
       :class="[
         tab.route === route.path
           ? 'bg-white text-sky-500'
           : 'text-slate-700 hover:text-slate-700',
-        'px-3 py-2 font-medium text-[10px] rounded-md text-center',
       ]"
-      :aria-current="tab.current ? 'page' : undefined"
     >
       <div v-html="tab.icon"></div>
       <span>{{ tab.name }}</span>
@@ -22,8 +20,9 @@
   </nav>
 </template>
 
-<script setup>
-  import { useRoute } from "vue-router";
+<script setup lang="ts">
+  import { useRoute } from "#imports";
+
   const route = useRoute();
 
   const tabs = [
